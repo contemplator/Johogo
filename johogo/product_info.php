@@ -2,6 +2,8 @@
 
 	<link rel="stylesheet" type="text/css" media="all" href="css/product_info.css" />
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="css/colorbox.css" />
+	<script src="js/jquery.colorbox.js"></script>
   	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
   	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
@@ -182,7 +184,7 @@
 					</div>	
 					<hr/>
 
-					<button name="buy" onclick="">我要買</button><br><br>
+					<a href="http://tw.yahoo.com" class="ajax"><div name="buy" onclick="">我要買444444444444</div></a><br><br>
 
 					<div id="tabs" class="info grid_12">
   <ul>
