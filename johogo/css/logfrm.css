@@ -1,0 +1,23 @@
+
+
+				.tittle{
+					font-size: 50px;
+					font-weight: 25px;
+				}
+
+				.maintable
+				{
+				  border-collapse: collapse;
+				  border-style: double;
+				  border-width: 3px;
+				  height: 400px;
+				  vertical-align: middle;
+				  text-align: center;
+				  background: ;
+				}
+				
+				.td_left
+				{
+					height: 607px;
+				}
+		

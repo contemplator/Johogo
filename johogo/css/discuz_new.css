@@ -1,0 +1,19 @@
+    .content
+	{
+		/*text-align: center;*/
+		vertical-align: middle;
+	}
+	.space
+	{
+		height: 60px;
+	}
+	.tittle
+	{
+		font-size: 28px;
+		font-weight: 100px;
+		text-align: left;
+		vertical-align: middle;
+	}
+	div:not(:last-child) {border-right: 0;}
+		
+		
