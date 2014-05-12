@@ -6,6 +6,6 @@
 	global $_DB;
     $_DB['host'] = "localhost";
     $_DB['username'] = "root";
-    $_DB['password'] = "nccu6020";
-    $_DB['dbname'] = "rentbook";
+    $_DB['password'] = "";
+    $_DB['dbname'] = "johogo";
 ?>

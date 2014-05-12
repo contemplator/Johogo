@@ -1,0 +1,7 @@
+p_id,c_acccount,p_name,category,o_price,s_price,description,goal,u_datetime,d_datetime,popular,isgroup,shipment
+"300000001","idlefox","加拿大楓葉冰酒","酒類","500","300","酒精濃度：9.50% 
+容量：375 ml","20","2014-05-12 17:40:09","2014-06-30 00:00:00","0","0","7"
+"300000002","idlefox","加拿大品尼克蘋果氣泡冰酒","酒類","750","450","加拿大品尼克蘋果氣泡冰酒
+Domaine Pinnacle Ice Apple Wine Sparkling 
+酒精濃度：12.00% 
+容量：375 ml","20","2014-05-12 17:40:09","2014-06-30 00:00:00","0","0","7"
