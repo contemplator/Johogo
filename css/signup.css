@@ -1,0 +1,20 @@
+#signup-title{
+	text-align: center;
+}
+#signup-body{
+	table-layout: fixed;
+	width: 100%;
+}
+#signup-submit{
+	float: right;
+	margin-right: 50px;
+}
+#signup-footer{
+	text-align: left;
+}
+body {
+    background-color: #FFFFEB;
+}
+#id_checkimg{
+	width:10px;
+}

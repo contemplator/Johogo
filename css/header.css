@@ -1,0 +1,38 @@
+body {			
+	font-family: 微軟正黑體;
+}
+a:hover{
+	text-decoration: none;
+}
+#logo-img{
+	margin-left: 10%;
+}
+#membership{
+	display: inline-block;
+	float: right;
+	margin-top: 10px;
+	margin-right: 10%;
+}
+#data-sticky-column{
+	background: #5B5B5B;
+	border: 0px;
+	border-radius: 0px;
+}
+#data-sticky-column>div>ul>li>a{
+	color: #FFFFFF;
+}
+.choosed{
+	background: #3b3b3b;
+}
+.menu-item:hover{
+	background: #BBBBBB;
+	color: #202020;
+}
+.menu-item>a{
+	color: #FFFFFF;
+}
+.menu_input{
+	float: right;
+	border-radius: 3px;
+	margin: 10px;
+}

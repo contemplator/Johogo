@@ -1,0 +1,14 @@
+.login-body{
+	height: 40%;
+	padding: 50px;
+}
+#form-footer{
+	text-align: right;
+}
+#form-signup{
+	color: black;
+	text-decoration: none;
+}
+body {
+    background-color: #FFFFEB;
+}

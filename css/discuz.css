@@ -1,0 +1,52 @@
+#discuz_search{
+	text-align: right;
+}
+#discuz_column>td{
+	text-align: center;
+}
+.discuz_id{
+	text-align: center;
+	cursor: pointer;
+}
+.discuz_title{
+	text-align: left;
+	cursor: pointer;
+}
+.discuz_poster{
+	text-align: left;
+}
+.discuz_datetime{
+	text-align: center;
+}
+.discuz_popular{
+	text-align: center;
+}
+.discuz_category{
+	text-align: center;
+}
+/*.discuz_talk{
+	background-color: #F4C76C;
+}
+.discuz_hate{
+	background-color: #000000;
+	color: #FFFFFF;
+}
+.discuz_recommend{
+	background-color: #0000FF;
+	color: #FFFFFF;
+}
+.discuz_group{
+	background-color: #FFAA00;
+	color: #000000;
+}
+.discuz_debate{
+	background-color: #00AA00;
+	color: #000000;
+}
+.discuz_question{
+	background-color: #AA0000;
+	color: #FFFFFF;
+}
+#pagination{
+	text-align: center;
+}*/

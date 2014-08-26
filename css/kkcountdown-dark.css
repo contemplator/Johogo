@@ -1,0 +1,20 @@
+li{
+    list-style: none;
+}
+span{
+    text-align: center;
+}
+.kkc-days,.kkc-hours,.kkc-min,.kkc-sec{
+    color: #3767b9;
+    font-size: 19px;
+    font-weight: bold;
+
+}
+.p_intro_comment{
+	text-align: center;
+}
+.p_title{
+    color: orange;
+    font-size: 35px;
+    font-weight: bold;
+}
