@@ -101,7 +101,7 @@
 			}
 			// echo $sql;
 			$db->query($sql); 
-
+			
 			$count = 1;
 			while($result = $db->fetch_array()){
 				$sql = "SELECT `url` FROM `image` WHERE p_id=".$result["p_id"];
@@ -112,15 +112,23 @@
 					$discount = $discount/10;
 				}
 				$discount = $discount."折";
-				$complete_rate = $result["popular"]/$result["goal"]*100;
+				if($result["goal"] !== "0"){
+					$complete_rate = $result["popular"]/$result["goal"]*100;
+				}else{
+					$complete_rate = 100;
+				}
 				if($count == 1){
 					echo "<tr>";
 				}
 
-				echo "<td style=\"text-align: center;\">\r\n".
-						"<div class=\"panel panel-default cabinet\">\r\n".
+				if($result['isgroup'] == "1"){
+					echo "<td class=\"status-group\" style=\"text-align: center;\">\r\n" ;
+				}else{
+					echo "<td class=\"status-nongroup\" style=\"text-align: center;\">\r\n" ;
+				}
+						echo "<div class=\"panel panel-default cabinet\">\r\n".
 							"<div class=\"panel-heading\">\r\n".
-								"<h3 class=\"panel-title\">".$result["p_name"]."</h3>".
+								"<h3 class=\"panel-title\">".mb_substr($result["p_name"], 0, 17, 'utf-8')."</h3>".
 							"</div>\r\n".
 							"<div class=\"panel-body product-body\" onClick='top.location.href=\"product_info.php?pid=".$result["p_id"]."\"'>".
 								"<img src=\"../johogo_backstage/".$resultimg["url"]."\"/>\n\r".
@@ -146,7 +154,10 @@
 						"</div>\n\r".
 					"</td>\n\r";
 				$count++;
-
+				if($count == 3 && $total_counts == "2"){
+					echo "<td></td>";
+					echo "</tr>";
+				}
 				if($count == 4){
 					echo "</tr>";
 					$count = 1;

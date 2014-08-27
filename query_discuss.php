@@ -6,12 +6,11 @@ $db = new DB();
 if(isset($_POST["category"])){
 	echo '<table id="discuz-body" class="table table-hover table-striped">
 			<tr id="discuz_column">
-				<td id="discuz_num">文章編號</td>
+				<td id="discuz_category">分類</td>
 				<td id="discuz_title">標題</td>
 				<td id="discuz_poster">張貼者</td>
 				<td id="discuz_datetime">張貼時間</td>
 				<td id="discuz_popular">點閱</td>
-				<td id="discuz_category">分類</td>
 			</tr>';
 	$db = new DB();
 	$sql = "SELECT * FROM `discuz` WHERE `category`='".$_POST["category"]."'";
@@ -37,12 +36,6 @@ if(isset($_POST["category"])){
 	if($total_counts>0){
 		while($result = $db->fetch_array()){
 			echo '<tr>';
-			echo '<td class="discuz_id"><a onclick="acc_pop('.$result["d_id"].')">'.$result["d_id"].'</a></td>';
-			echo '<td class="discuz_title"><a onclick="acc_pop('.$result["d_id"].')">'.$result["d_title"].'</a></td>';
-			echo '<td class="discuz_poster">'.$result["m_account"].'</td>';
-			echo '<td class="discuz_datetime">'.$result["datetime"].'</td>';
-			echo '<td class="discuz_popular">'.$result["popular"].'</td>';
-			// echo '<td class="category grid_1 alpha" style="background-color : #ddd">'.$result["category"].'</td>';
 			$tag_color = 'wheat';
 			$discuz_category = "discuz_talk";
 			$category = $result["category"];
@@ -68,6 +61,12 @@ if(isset($_POST["category"])){
 				$discuz_category = "discuz_talk";
 			}
 			echo '<td class="discuz_category"><div class="'.$discuz_category.'">'.$result["category"].'</div></td>';
+			echo '<td class="discuz_title"><a onclick="acc_pop('.$result["d_id"].')">'.$result["d_title"].'</a></td>';
+			echo '<td class="discuz_poster">'.$result["m_account"].'</td>';
+			echo '<td class="discuz_datetime">'.$result["datetime"].'</td>';
+			echo '<td class="discuz_popular">'.$result["popular"].'</td>';
+			// echo '<td class="category grid_1 alpha" style="background-color : #ddd">'.$result["category"].'</td>';
+			
 			echo '</tr>';
 		}
 	}else{

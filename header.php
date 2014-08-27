@@ -17,21 +17,21 @@
 			array_push($category[$key], $result['c2_name']);
 		}
 	}
-	$db_usr = new DB();
-	$sql_usr = "SELECT `m_account`,`nickname` FROM `member` WHERE `student_id`='".$_SESSION["authen"]."'";
-	$member = $db_usr->getOnly($sql_usr);
 	
-	$account = $_SESSION["authen"];
-	if( (isset($member["m_account"])) && (trim($member["m_account"]!="")) ) {
-		$account = $member["m_account"];
-	}
-	if( (isset($member["nickname"])) && (trim($member["nickname"]!="")) ) {
-		$account = $member["nickname"];
-	}
 	if(!isset($_SESSION["authen"])){
 		$account = "訪客";
 		$login_status = "<a id=\"login\" href=\"login.php\">會員登入</a> | <a id=\"signup\" href=\"signup.php\">點我註冊</a>";
 	}else{
+		$db_usr = new DB();
+		$sql_usr = "SELECT `m_account`,`nickname` FROM `member` WHERE `student_id`='".$_SESSION["authen"]."'";
+		$member = $db_usr->getOnly($sql_usr);
+		$account = $_SESSION["authen"];
+		if( (isset($member["m_account"])) && (trim($member["m_account"]!="")) ) {
+			$account = $member["m_account"];
+		}
+		if( (isset($member["nickname"])) && (trim($member["nickname"]!="")) ) {
+			$account = $member["nickname"];
+		}
 		$login_status = "<a id=\"modify_data\" href=\"modify_data.php\">會員資料修改</a> | <a id=\"logout\" href=\"logout.php\">會員登出</a>";
 	}
 ?>

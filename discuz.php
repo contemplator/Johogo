@@ -1,5 +1,4 @@
 <?php 
-session_start();
 include ('header.php'); 
 global $pages;
 ?>
@@ -26,12 +25,12 @@ global $pages;
 	<div id="tab_test">
 		<ul class="nav nav-tabs" role="tablist" id="myTab">
 	  		<li class="active"><a style="" href="#all" role="tab" data-toggle="tab">全部</a></li>
-	  		<li><a class="discuz_talk" name="talk" href="#talk" role="tab" data-toggle="tab">閒聊</a></li>
-	  		<li><a class="discuz_hate" href="#hate" role="tab" data-toggle="tab">黑特</a></li>
-	  		<li><a class="discuz_recommend" href="#recommend" role="tab" data-toggle="tab">推薦</a></li>
-	  		<li><a class="discuz_group" href="#group" role="tab" data-toggle="tab">揪團</a></li>
-	  		<li><a class="discuz_debate" href="#debate" role="tab" data-toggle="tab">討論</a></li>
-	  		<li><a class="discuz_question" href="#question" role="tab" data-toggle="tab">問題</a></li>
+	  		<li><a class="" name="talk" href="#talk" role="tab" data-toggle="tab">閒聊</a></li>
+	  		<li><a class="" href="#hate" role="tab" data-toggle="tab">黑特</a></li>
+	  		<li><a class="" href="#recommend" role="tab" data-toggle="tab">推薦</a></li>
+	  		<li><a class="" href="#group" role="tab" data-toggle="tab">揪團</a></li>
+	  		<li><a class="" href="#debate" role="tab" data-toggle="tab">討論</a></li>
+	  		<li><a class="" href="#question" role="tab" data-toggle="tab">問題</a></li>
 		</ul>
 	</div>
 
@@ -227,7 +226,7 @@ global $pages;
 	}
 	window.onload = function(e){
 		$('#myTab li:nth-child(2)').click(function(){
-			ajax_query(1,'閒聊',1,<?php echo '\''.$_SESSION["srch_type"].'\''.','.'\''.$_SESSION["discuz_keyword"].'\''?>);
+			ajax_query(1,'閒聊',1);
 		});
 		$('#myTab li:nth-child(3)').click(function(){
 			ajax_query(2,'黑特',1);

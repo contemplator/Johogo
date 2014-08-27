@@ -21,6 +21,7 @@
 	font-size: 30px;
 	font-weight: bold;
 	color: red;
+	vertical-align: bottom;
 }
 .popular{
 	font-size: 20px;
@@ -33,4 +34,22 @@
 }
 .product-body{
 	cursor: pointer;	
+}
+td{
+	text-align: center;
+}
+#content{
+	text-align: center;
+}
+.status-group{
+	background-color: #AAAAAA;
+}
+.status-group:hover{
+	background-color: #FFAAAA;	
+}
+.status-nongroup{
+	background-color: #000000;
+}
+.status-nongroup:hover{
+	background-color: #00AA00;
 }

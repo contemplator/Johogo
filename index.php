@@ -81,7 +81,7 @@
 
 
 <div class="container_12" style="margin-top: 0px;">
-	<table style="table-layout: fixed;">
+	<table style="table-layout: fixed; margin: 0px auto;">
 		<?php
 			$db = new DB();
 			$db_img = new DB();
@@ -98,18 +98,27 @@
 					$discount = $discount/10;
 				}
 				$discount = $discount."折";
-				$complete_rate = $result["popular"]/$result["goal"]*100;
+				if($result["goal"] !== "0"){
+					$complete_rate = $result["popular"]/$result["goal"]*100;
+				}else{
+					$complete_rate = 100;
+				}
+				
 				if($count == 1){
 					echo "<tr>";
 				}
-
-				echo "<td style=\"text-align: center;\">\r\n".
-						"<div class=\"panel panel-default cabinet\">\r\n".
+				if($result['isgroup'] == "1"){
+					echo "<td class=\"status-group\" style=\"text-align: center;\">\r\n" ;
+				}else{
+					echo "<td class=\"status-nongroup\" style=\"text-align: center;\">\r\n" ;
+				}
+				
+						echo "<div class=\"panel panel-default cabinet\">\r\n".
 							"<div class=\"panel-heading\">\r\n".
-								"<img src=\"../johogo_backstage/".$resultimg["url"]."\"/>".
+								"<div class=\"panel-title\">".mb_substr($result["p_name"], 0, 17, 'utf-8')."</div>\n\r".
 							"</div>\r\n".
 							"<div class=\"panel-body product-body\" onClick='top.location.href=\"product_info.php?pid=".$result["p_id"]."\"'>".
-								"<h3 class=\"panel-title\" style=\"margin-top: 10px;font-weight:bold\">".$result["p_name"]."</h3>\n\r".
+								"<img src=\"../johogo_backstage/".$resultimg["url"]."\"/>".
 								"<table>\n\r".
 									"<tr>\n\r".
 										"<td>\n\r".
@@ -117,8 +126,8 @@
 											"<span class=\"o_price\">".$result["o_price"]."</span>&nbsp;\n\r".
 											"省下<span class=\"save\">".((int)$result["o_price"]-(int)$result["s_price"])."</span>\n\r".
 										"</td>\n\r".
-										"<td style=\"vertical-align:bottom\">\n\r".
-											"<div class=\"discount\" style=\"font-size:22px\">".$discount."</div>\n\r".
+										"<td class=\"discount\">\n\r".
+											"<div class=\"discount\" style=\"\">".$discount."</div>\n\r".
 										"</td>\n\r".
 										"<td>\n\r".
 											"<div class=\"popular\">".$result["popular"]."</div>人已跟團\n\r".
