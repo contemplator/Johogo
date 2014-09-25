@@ -1,0 +1,37 @@
+.slideText {
+    position: relative;
+    overflow: hidden;
+    width: 50%;
+    height: 3em;
+    margin-bottom: -20px;
+    border-style: solid;
+    border-color: #ec971f;
+    border-width: 1px;
+    border-left-width: 10px;
+    border-right-width: 10px;
+    margin-left: 50px;
+
+}
+.slideText ul, .slideText li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+}
+.slideText ul {
+    position: absolute;
+}
+.slideText li {
+    text-align: center;
+}
+.slideText li a {
+    display: block;
+    overflow: hidden;
+    font-size: 1em;
+    height: 1.5em;
+    line-height: 1.5em;
+    text-decoration: none;
+}
+.slideText li a:hover {
+    text-decoration: underline;
+}

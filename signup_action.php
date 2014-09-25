@@ -16,6 +16,8 @@ if($db->get_num_rows()>0){
 }else{
     $school_email = $_POST["school_email"];
     $password = $_POST["password"];
+    $identity = $_POST["identity"];
+    $nickname = $_POST["nickname"];
     $vfn = md5(rand());
 
  
@@ -59,7 +61,7 @@ if($db->get_num_rows()>0){
             echo "location.href='http://www.idlefox.idv.tw/johogo/index.php';";
             // echo "document.location.href=\"http://www.idlefox.idv.tw/jogogo/index.php\";";
             echo "</SCRIPT>";
-            $sql = "INSERT INTO `johogo`.`member` (`student_id`, `password`,`verification`,`isverified`) VALUES ('".$school_email."', '".$password."','".$vfn."','0')";
+            $sql = "INSERT INTO `johogo`.`member` (`student_id`, `password`,`nickname`,`identity`,`verification`,`isverified`) VALUES ('".$school_email."', '".$password."','".$nickname."','".$identity."','".$vfn."','0')";
             $db->query($sql);
         } else {
             echo $mail->ErrorInfo . "<br/>";

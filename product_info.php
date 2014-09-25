@@ -51,20 +51,14 @@ $(document).ready(function(){
 		});
 	});
 	$("#rep_img").click(function(){
-		console.log("click");
-		if($("#rep_img_val").val()==1){
-			console.log("DETECT:val=1");
-			$("#rep_img").attr({
-  				src: "img/bad.png",
-  			});
-  			$("#rep_img_val").val(0);
-		}else{
-			console.log("DETECT:val=0");
-			$("#rep_img").attr({
-  				src: "img/good.png",
-  			});
-  			$("#rep_img_val").val(1);
-		}
+		$("#rep_img").css({opacity:1.0});
+		$("#rep_Nimg").css({opacity:0.5});
+		$("#rep_img_val").val(1); //good
+	});
+	$("#rep_Nimg").click(function(){
+		$("#rep_img").css({opacity:0.5});
+		$("#rep_Nimg").css({opacity:1.0});
+		$("#rep_img_val").val(0); //bad
 	});
 });
 </script>
@@ -116,8 +110,14 @@ $(document).ready(function(){
 								<?php
 									$goal = $prduct["goal"];
 									$cur_popular = $prduct["popular"];
-									$vote_list = $prduct["vote_list"];
 									$complete_rate = $prduct["popular"]/$prduct["goal"]*100;
+
+									$db_follow = new DB();
+									$sql_follow = "SELECT `student_id` FROM `follow` WHERE `p_id`='".$_GET["pid"]."'";
+									$db_follow->query($sql_follow);
+									while($result_follow = $db_follow->fetch_array()){
+										$vote_list = $result_follow["student_id"].';'.$vote_list;
+									}
 									
 									if(($goal<=$cur_popular)&&($goal!=0)) {
 										echo '當前進度('.$cur_popular.'/'.$goal.'人): <br>
@@ -177,16 +177,19 @@ $(document).ready(function(){
 			<?php echo $prduct["description"];?>
 		</div>
 		<div id="response_content" class="grid_12" style="height:200px;font-size: 25px;;font-family:Microsoft JhengHei;display:none;">
-				<textarea id="p_repcontent" name="p_repcontent" class="grid_8"></textarea>
+				<textarea id="p_repcontent" name="p_repcontent" class="grid_8" style="width:620px;height:115px;"></textarea>
 				<?php 
 					echo '<input id="p_id" type="hidden" name="p_id"  value="'.$prduct["p_id"].'">';
 				?>
-				<img id="rep_img" style="height:80px;cursor:hand" class="grid_1" src="img/good.png">
+				<div class="grid_1">
+					<img id="rep_img" style="height:60px;cursor:hand" src="img/good.png">
+					<img id="rep_Nimg" style="height:60px;cursor:hand;opacity:0.5" src="img/bad.png">
+				</div>
 				<input id="rep_img_val" name="rep_img_val" type="hidden" value="1">
-				<input id="p_ressubmit" class="grid_2" type="button" style="height:80px" value="提交"/>
+				<input id="p_ressubmit" class="grid_2" type="button" style="height:80px;margin-top:10px" value="提交"/>
 				<div id="response_list">
 					<?php
-						$sql = "SELECT `m_account`,`datetime`,`content`,`isgood`,`response`,`r_datetime` FROM `comment` WHERE `p_id`= '".$prduct["p_id"]."'";
+						$sql = "SELECT `student_id`,`datetime`,`content`,`isgood`,`response`,`r_datetime` FROM `comment` WHERE `p_id`= '".$prduct["p_id"]."'";
 						$db->query($sql);
 						if($db->get_num_rows()>0){
 							echo '<table class="grid_12">';
@@ -195,7 +198,17 @@ $(document).ready(function(){
 								if($resultcomt["isgood"]==0){
 									$imgsrc="img/bad.png";
 								}
-								echo '<tr><td class="grid_3">'.$resultcomt["m_account"].'</td><td class="grid_5">'.$resultcomt["content"].'</td><td class="grid_1"><img style="height:50px;" src="'.$imgsrc.'"></td><td class="grid_3">'.$resultcomt["datetime"].'</td></tr>';
+								$db_nickname = new DB();
+								$sql_nickname = "SELECT `nickname` FROM `member` WHERE `student_id`='".$resultcomt["student_id"]."'";
+								$member = $db_nickname->getOnly($sql_nickname);
+								$name = $resultcomt["student_id"];
+								if($member["nickname"]!=NULL){
+									$name = $member["nickname"];
+								}
+								echo '<tr><td class="grid_3">'.$name.'</td><td class="grid_5">'.$resultcomt["content"].'</td><td class="grid_1"><img style="height:50px;" src="'.$imgsrc.'"></td><td class="grid_3">'.$resultcomt["datetime"].'</td></tr>';
+								if(isset($resultcomt["response"])){
+									echo '<tr><td class="grid_3" style="text-align:right">-></td><td class="grid_5">'.$resultcomt["response"].'</td><td class="grid_3">'.$resultcomt["r_datetime"].'</td></tr>';
+								}
 							}
 							echo '</table>';
 						}

@@ -13,10 +13,14 @@ if((isset($_GET["vfn"]))&&(isset($_GET["id"]))){
 
 		$result = $db->getOnly($sql); 
 		if($result["verification"]==$verification){
-		$verify_sql = "UPDATE `johogo`.`member` SET `isverified` = '1' WHERE `member`.`student_id` = '".$student_id."'";
-		$db->query($verify_sql);
-		$_SESSION["authen"] = $student_id;
-		header("Location: index.php");
+			$verify_sql = "UPDATE `johogo`.`member` SET `isverified` = '1' WHERE `member`.`student_id` = '".$student_id."'";
+			$db->query($verify_sql);
+			$_SESSION["authen"] = $student_id;
+			echo "<SCRIPT>";
+			echo "alert('請先完成個人詳細資料!');";
+			echo "window.location = \"modify_data.php\";";
+			echo "</SCRIPT>";
+			// header("Location: index.php");
 		}else{
 			header("Content-Type:text/html; charset=utf-8");
 			echo '認證無效!請點選<a href="">此處</a>重新寄發認證碼!';

@@ -40,9 +40,14 @@
 					}
 
 					echo "<td style=\"text-align: center;\">\r\n".
-							"<div class=\"panel panel-default cabinet\">\r\n".
-								"<div class=\"panel-heading\">\r\n".
-									"<h3 class=\"panel-title\">".$result["p_name"]."</h3>".
+							"<div class=\"panel panel-default cabinet\">\r\n";
+								if($result['isgroup'] == "1"){
+									echo "<div class=\"panel-heading\" style=\"background-color:orange\">\r\n<img src=\"\">";
+								}else{
+									echo "<div class=\"panel-heading\">\r\n";
+								}
+
+					echo "<h3 class=\"panel-title\">".$result["p_name"]."</h3>".
 								"</div>\r\n".
 								"<div class=\"panel-body product-body\" onClick='top.location.href=\"product_info.php?pid=".$result["p_id"]."\"'>".
 									"<img src=\"../johogo_backstage/".$resultimg["url"]."\"/>\n\r".
@@ -112,48 +117,45 @@
 					$discount = $discount/10;
 				}
 				$discount = $discount."折";
-				if($result["goal"] !== "0"){
 					$complete_rate = $result["popular"]/$result["goal"]*100;
-				}else{
-					$complete_rate = 100;
-				}
-				if($count == 1){
-					echo "<tr>";
-				}
+					if($count == 1){
+						echo "<tr>";
+					}
 
-				if($result['isgroup'] == "1"){
-					echo "<td class=\"status-group\" style=\"text-align: center;\">\r\n" ;
-				}else{
-					echo "<td class=\"status-nongroup\" style=\"text-align: center;\">\r\n" ;
-				}
-						echo "<div class=\"panel panel-default cabinet\">\r\n".
-							"<div class=\"panel-heading\">\r\n".
-								"<h3 class=\"panel-title\">".mb_substr($result["p_name"], 0, 17, 'utf-8')."</h3>".
-							"</div>\r\n".
-							"<div class=\"panel-body product-body\" onClick='top.location.href=\"product_info.php?pid=".$result["p_id"]."\"'>".
-								"<img src=\"../johogo_backstage/".$resultimg["url"]."\"/>\n\r".
-								"<table>\n\r".
-									"<tr>\n\r".
-										"<td>\n\r".
-											"<div class=\"s_price\">".$result["s_price"]."</div>\n\r".
-											"<span class=\"o_price\">".$result["o_price"]."</span>&nbsp;\n\r".
-											"省下<span class=\"save\">".((int)$result["o_price"]-(int)$result["s_price"])."</span>\n\r".
-										"</td>\n\r".
-										"<td>\n\r".
-											"<div class=\"discount\">".$discount."</div>\n\r".
-										"</td>\n\r".
-										"<td>\n\r".
-											"<div class=\"popular\">".$result["popular"]."</div>人已跟團\n\r".
-										"</td>\n\r".
-									"</tr>\n\r".
-								"</table>\n\r".
-								"<div class=\"progress\">\n\r".
-									"<div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"".$complete_rate."\" aria-valuemin=\"0\" aria-valuemax=\"100\"  style=\"width: ".$complete_rate."%;\">".$complete_rate."%</div>\n\r".
+					echo "<td style=\"text-align: center;\">\r\n".
+							"<div class=\"panel panel-default cabinet\">\r\n";
+								if($result['isgroup'] == "1"){
+									echo "<div class=\"panel-heading\" style=\"background-color:orange\">\r\n<img src=\"\">";
+								}else{
+									echo "<div class=\"panel-heading\">\r\n";
+								}
+
+					echo "<h3 class=\"panel-title\">".$result["p_name"]."</h3>".
+								"</div>\r\n".
+								"<div class=\"panel-body product-body\" onClick='top.location.href=\"product_info.php?pid=".$result["p_id"]."\"'>".
+									"<img src=\"../johogo_backstage/".$resultimg["url"]."\"/>\n\r".
+									"<table>\n\r".
+										"<tr>\n\r".
+											"<td>\n\r".
+												"<div class=\"s_price\">".$result["s_price"]."</div>\n\r".
+												"<span class=\"o_price\">".$result["o_price"]."</span>&nbsp;\n\r".
+												"省下<span class=\"save\">".((int)$result["o_price"]-(int)$result["s_price"])."</span>\n\r".
+											"</td>\n\r".
+											"<td>\n\r".
+												"<div class=\"discount\">".$discount."</div>\n\r".
+											"</td>\n\r".
+											"<td>\n\r".
+												"<div class=\"popular\">".$result["popular"]."</div>人已跟團\n\r".
+											"</td>\n\r".
+										"</tr>\n\r".
+									"</table>\n\r".
+									"<div class=\"progress\">\n\r".
+										"<div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"".$complete_rate."\" aria-valuemin=\"0\" aria-valuemax=\"100\"  style=\"width: ".$complete_rate."%;\">".$complete_rate."%</div>\n\r".
+									"</div>\n\r".
 								"</div>\n\r".
 							"</div>\n\r".
-						"</div>\n\r".
-					"</td>\n\r";
-				$count++;
+						"</td>\n\r";
+					$count++;
 				if($count == 3 && $total_counts == "2"){
 					echo "<td></td>";
 					echo "</tr>";

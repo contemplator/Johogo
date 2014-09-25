@@ -1,6 +1,11 @@
 <?php require("header.php"); ?>
 <link rel="stylesheet" type="text/css" media="all" href="css/login.css" />
 <script type="text/javascript">
+  $(document).keypress(function(e) {
+    if(e.which == 13) {
+        loginmine.click();
+    }
+  });
 	function datacheck(){
 		if(document.getElementById("username").value == ""){
 			alert("您必須完成帳號的輸入！");
@@ -37,7 +42,7 @@
 		</form>
   	</div>
   	<div class="panel-footer" id="form-footer">
-  		<button type="button" class="btn btn-info" onclick="datacheck()">登入</button>
+  		<button id="loginmine" type="button" class="btn btn-info" onclick="datacheck()">登入</button>
     	<button type="button" class="btn btn-warning"><a id="form-signup" href="signup.php">還沒有會員? (會員註冊)</a></button>
   	</div>
 </div>

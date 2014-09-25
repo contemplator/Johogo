@@ -4,7 +4,7 @@ global $pages;
 ?>
 
 <link rel="stylesheet" type="text/css" media="all" href="css/discuz.css" />
-<div class="container_12">
+<div class="container_12" style="margin-bottom:150px;">
 	<nav id="discuz_search">
 		<form class="form-inline" action="" method="GET" style="display: inline;">
 			<div class="form-group">
@@ -12,7 +12,7 @@ global $pages;
 				<select name="srch_type" class="form-control">
 					<option value="d_title">標題</option>
 					<option value="d_id">編號</option>
-					<option value="m_account">作者</option>
+					<option value="student_id">作者</option>
 				</select>
 				<input type="text" class="form-control" id="discuz_keyword" name="discuz_keyword" placeholder="請輸入關鍵字">
 		  	</div>
@@ -55,7 +55,7 @@ global $pages;
 						}elseif($_GET["srch_type"]=='d_title'){
 							$sql=$sql." AND `d_title` LIKE '%".$_GET["discuz_keyword"]."%'";
 						}elseif($_GET["srch_type"]=='m_accout'){
-							$sql=$sql." AND `m_account` LIKE '%".$_GET["discuz_keyword"]."%'";
+							$sql=$sql." AND `student_id` LIKE '%".$_GET["discuz_keyword"]."%'";
 						}
 					}
 					if(isset($_GET['p'])){
@@ -100,7 +100,14 @@ global $pages;
 							}
 							echo '<td class="discuz_category"><div class="'.$discuz_category.'">'.$result["category"].'</div></td>';
 							echo '<td class="discuz_title"><a onclick="acc_pop('.$result["d_id"].')">'.$result["d_title"].'</a></td>';
-							echo '<td class="discuz_poster">'.$result["m_account"].'</td>';
+							$db_m = new DB();
+				  			$sql_m = "SELECT `nickname` FROM `member` WHERE `student_id` = '".$result["student_id"]."'";
+				  			$result_m = $db_m->getOnly($sql_m);
+				  			$member = $result["student_id"];
+				  			if($result_m["nickname"]!=NULL){
+				  				$member = $result_m["nickname"];
+				  			}
+							echo '<td class="discuz_poster">'.$member.'</td>';
 							echo '<td class="discuz_datetime">'.$result["datetime"].'</td>';
 							echo '<td class="discuz_popular">'.$result["popular"].'</td>';
 							// echo '<td class="category grid_1 alpha" style="background-color : #ddd">'.$result["category"].'</td>';
@@ -130,7 +137,7 @@ global $pages;
 						}elseif($_GET["srch_type"]=='d_title'){
 							$sql_num=$sql_num." AND `d_title` LIKE '%".$_GET["discuz_keyword"]."%'";
 						}elseif($_GET["srch_type"]=='m_accout'){
-							$sql_num=$sql_num." AND `m_account` LIKE '%".$_GET["discuz_keyword"]."%'";
+							$sql_num=$sql_num." AND `student_id` LIKE '%".$_GET["discuz_keyword"]."%'";
 						}
 					}
 					$result = $db->getOnly($sql_num);
@@ -171,7 +178,7 @@ global $pages;
 					 
 						for ($i = $start; $i <= $end; $i++){
 							if($i > 0)
-								echo ($i == $page) ? "<span class=\"page btn btn-warning\"><strong>$i</strong></span>" : "<span class=\"page btn\" href='?{$_get_vars}&p={$i}'>$i</span>";
+								echo ($i == $page) ? "<span class=\"page btn btn-warning\"><strong>$i</strong></span>" : "<span class=\"page btn\"><a href='?{$_get_vars}&p={$i}'>$i</a></span>";
 						}
 					 
 						if($page != $total){

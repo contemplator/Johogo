@@ -1,5 +1,6 @@
 .cabinet{
-	margin: 5px;
+	margin: 10px;
+	border-color: black;
 }
 .panel-body{
 	padding-bottom: 1px;
@@ -36,16 +37,4 @@
 }
 .page_button{
 	text-align: center;
-}
-.status-group{
-	background-color: #AAAAAA;
-}
-.status-group:hover{
-	background-color: #FFAAAA;	
-}
-.status-nongroup{
-	background-color: #000000;
-}
-.status-nongroup:hover{
-	background-color: #00AA00;
 }

@@ -21,7 +21,7 @@ if(isset($_POST["category"])){
 						}elseif($_SESSION["srch_type"]=='d_title'){
 							$sql=$sql." AND `d_title` LIKE '%".$_SESSION["discuz_keyword"]."%'";
 						}elseif($_SESSION["srch_type"]=='m_accout'){
-							$sql=$sql." AND `m_account` LIKE '%".$_SESSION["discuz_keyword"]."%'";
+							$sql=$sql." AND `student_id` LIKE '%".$_SESSION["discuz_keyword"]."%'";
 						}
 					}
 					if(isset($_POST['page'])){
@@ -62,7 +62,7 @@ if(isset($_POST["category"])){
 			}
 			echo '<td class="discuz_category"><div class="'.$discuz_category.'">'.$result["category"].'</div></td>';
 			echo '<td class="discuz_title"><a onclick="acc_pop('.$result["d_id"].')">'.$result["d_title"].'</a></td>';
-			echo '<td class="discuz_poster">'.$result["m_account"].'</td>';
+			echo '<td class="discuz_poster">'.$result["student_id"].'</td>';
 			echo '<td class="discuz_datetime">'.$result["datetime"].'</td>';
 			echo '<td class="discuz_popular">'.$result["popular"].'</td>';
 			// echo '<td class="category grid_1 alpha" style="background-color : #ddd">'.$result["category"].'</td>';
@@ -88,7 +88,7 @@ if(isset($_POST["category"])){
 			}elseif($_SESSION["srch_type"]=='d_title'){
 				$sql_num=$sql_num." AND `d_title` LIKE '%".$_SESSION["discuz_keyword"]."%'";
 			}elseif($_SESSION["srch_type"]=='m_accout'){
-				$sql_num=$sql_num." AND `m_account` LIKE '%".$_SESSION["discuz_keyword"]."%'";
+				$sql_num=$sql_num." AND `student_id` LIKE '%".$_SESSION["discuz_keyword"]."%'";
 			}
 		}
 		$result = $db->getOnly($sql_num);

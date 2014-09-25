@@ -23,12 +23,9 @@
 		$login_status = "<a id=\"login\" href=\"login.php\">會員登入</a> | <a id=\"signup\" href=\"signup.php\">點我註冊</a>";
 	}else{
 		$db_usr = new DB();
-		$sql_usr = "SELECT `m_account`,`nickname` FROM `member` WHERE `student_id`='".$_SESSION["authen"]."'";
+		$sql_usr = "SELECT `nickname` FROM `member` WHERE `student_id`='".$_SESSION["authen"]."'";
 		$member = $db_usr->getOnly($sql_usr);
 		$account = $_SESSION["authen"];
-		if( (isset($member["m_account"])) && (trim($member["m_account"]!="")) ) {
-			$account = $member["m_account"];
-		}
 		if( (isset($member["nickname"])) && (trim($member["nickname"]!="")) ) {
 			$account = $member["nickname"];
 		}
@@ -100,8 +97,8 @@
 				<a id="logo-img" href="index.php"><img src="resource/johogo-logo.png"></a>
 				<div id="membership">
 					<nav>
-						<a id="member_center" href="#">會員中心</a> |
-						<a id="about_us" href="#" onFocus>關於我們</a>
+						<a id="member_center" href="memberQuery.php">會員中心</a> |
+						<a id="about_us" href="aboutUs.php" onFocus>關於我們</a>
 					</nav>
 					<nav>
 						<span><?php echo $account;?></span>&nbsp;&nbsp;&nbsp;您好，歡迎來到Johogo。
@@ -116,7 +113,7 @@
 					assd
 				</div>
 			</nav> -->
-			<nav id="data-sticky-column" class="navbar navbar-default">
+			<nav id="data-sticky-column" class="navbar navbar-default" style="margin-bottom:5px;">
 				<div class="collapse navbar-collapse container_12">
 					<ul class="nav navbar-nav" role="navigation"> 
 						<?php

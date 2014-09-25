@@ -8,7 +8,7 @@
 		$result = $db->getOnly($sql); 
 		$new_r = $result["popular"]+1;
 
-		$sql_1 = "UPDATE `johogo`.`discuz` SET `popular` = '".$new_r."' WHERE `discuz`.`d_id` =".$_GET["d_id"];
+		$sql_1 = "UPDATE `johogo`.`discuz` SET `u_datetime`='".$result["u_datetime"]."' ,`popular` = '".$new_r."' WHERE `discuz`.`d_id` =".$_GET["d_id"];
 		$db->query($sql_1);
 		echo 'ok';
 	}

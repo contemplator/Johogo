@@ -5,16 +5,134 @@
 		$("input[name='school_email']").blur(function(){
 			id_check($(this).val());
 		});
+		$("input[name='check_password'],input[name='password'],input[name='nickname'],select[name='identity']").blur(function(){
+			if($("input[name='school_email']").val()==""){
+				id_check($(this).val());
+				$("input[name='submit']").attr('disabled', true);
+			}
+			else if($("input[name='nickname']").val()==""){
+				$("#id_checkimg").css({
+					"width" : "60px"
+				});
+				$('#id_checkimg').attr('src', 'img/page_status.gif');
+				setTimeout(function() {
+					$("#id_checkimg").attr("src","img/fail.png");
+					$("#id_checkimg").css({
+					    "width" : "30px"
+					});
+				}, 300);
+				$("#nickname_div").addClass("has-error");
+				$("#id_check_alert").css({
+					"color" : "red"
+				});
+				$("#id_check_alert").text("暱稱為必填欄位");
+				$("input[name='submit']").attr('disabled', true);
+			}
+			else if($("input[name='password']").val()==""){
+				$("#id_checkimg").css({
+					"width" : "60px"
+				});
+				$('#id_checkimg').attr('src', 'img/page_status.gif');
+				setTimeout(function() {
+					$("#id_checkimg").attr("src","img/fail.png");
+					$("#id_checkimg").css({
+					    "width" : "30px"
+					});
+				}, 300);
+				$("#password_div").addClass("has-error");
+				$("#id_check_alert").css({
+					"color" : "red"
+				});
+				$("#id_check_alert").text("密碼為必填欄位");
+				$("input[name='submit']").attr('disabled', true);
+			}
+			else if($("input[name='check_password']").val()==""){
+				$("#id_checkimg").css({
+					"width" : "60px"
+				});
+				$('#id_checkimg').attr('src', 'img/page_status.gif');
+				setTimeout(function() {
+					$("#id_checkimg").attr("src","img/fail.png");
+					$("#id_checkimg").css({
+					    "width" : "30px"
+					});
+				}, 300);
+				$("#check_password_div").addClass("has-error");
+				$("#id_check_alert").css({
+					"color" : "red"
+				});
+				$("#id_check_alert").text("確認密碼為必填欄位");
+				$("input[name='submit']").attr('disabled', true);
+			}
+
+			else if($("select[name='identity']").val()=="請選擇帳號身分..."){
+				$("#id_checkimg").css({
+					"width" : "60px"
+				});
+				$('#id_checkimg').attr('src', 'img/page_status.gif');
+				setTimeout(function() {
+					$("#id_checkimg").attr("src","img/fail.png");
+					$("#id_checkimg").css({
+					    "width" : "30px"
+					});
+				}, 300);
+				$("#identity_div").addClass("has-error");
+				$("#id_check_alert").css({
+					"color" : "red"
+				});
+				$("#id_check_alert").text("請選擇帳號身分");
+				$("input[name='submit']").attr('disabled', true);
+			}
+
+			else if($("input[name='password']").val()!=$("input[name='check_password']").val()){
+				$("#id_checkimg").css({
+					"width" : "60px"
+				});
+				$('#id_checkimg').attr('src', 'img/page_status.gif');
+				setTimeout(function() {
+					$("#id_checkimg").attr("src","img/fail.png");
+					$("#id_checkimg").css({
+					    "width" : "30px"
+					});
+				}, 300);
+				$("#student_id_div").addClass("has-error");
+				$("#id_check_alert").css({
+					"color" : "red"
+				});
+				$("#id_check_alert").text("兩次密碼不一致");
+				$("input[name='submit']").attr('disabled', true);
+			}
+
+			else{
+				$("#id_checkimg").css({
+					"width" : "60px"
+				});
+				$('#id_checkimg').attr('src', 'img/page_status.gif');
+				setTimeout(function() {
+					$("#id_checkimg").attr("src","img/ok_1.png");
+					$("#id_checkimg").css({
+					    "width" : "30px"
+					});
+				}, 300);
+				$("#student_id_div").addClass("has-success");
+				$("#id_check_alert").css({
+					"color" : "black"
+				});
+				$("#id_check_alert").text("");
+				$("input[name='submit']").removeAttr('disabled');
+			}
+			
+		});
 	});
-	
 	function id_check(student_id){
 			var xhr = $.ajax({
 				type: "POST",
 				url: "signup_check.php",
 				data: "student_id="+student_id,
+				dataType: "json",
 				
 			success: function(msg){
-				if(msg=="此帳號已申請過"){
+				if(msg["debug"]==1){
 					setTimeout(function() {
 						$("#id_checkimg").attr("src","img/fail.png");
 						$("#id_checkimg").css({
@@ -25,19 +143,21 @@
 					$("#id_check_alert").css({
 						"color" : "red"
 					});
-				}else{
+					$("input[name='submit']").attr('disabled', true);
+				}
+				else if(msg["debug"]==0){
 					setTimeout(function() {
 						$("#id_checkimg").attr("src","img/ok_1.png");
 						$("#id_checkimg").css({
 						    "width" : "30px"
 						});
 					}, 300);
-					$("#student_id_div").addClass("has-success");
+					$("#student_id_div").removeClass("has-error55");
 					$("#id_check_alert").css({
 						"color" : "black"
 					});
 				}
-				$("#id_check_alert").text(msg);
+				$("#id_check_alert").text(msg["msg"]);
 			},beforeSend:function(){
 				$("#id_checkimg").css({
 					"width" : "60px"
@@ -77,21 +197,27 @@
 				<span class="col-sm-1"><img id="id_checkimg"></span>
 			</div>
 			<div class="form-group">
+				<label class="col-sm-2 control-label">暱稱：</label>
+				<div id="nickname_div" class="col-sm-10">
+					<input type="text" class="form-control" id="nickname" name="nickname" placeholder="暱稱"/>
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="col-sm-2 control-label">密碼：</label>
-				<div class="col-sm-10">
+				<div id="password_div" class="col-sm-10">
 					<input type="password" class="form-control" id="password" name="password" placeholder="密碼"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">再次確認密碼：</label>
-				<div class="col-sm-10">
+				<div id="check_password_div" class="col-sm-10">
 					<input type="password" class="form-control" id="check_password" name="check_password" placeholder="再輸入一次密碼"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">身分類別：</label>
-				<div class="col-sm-10">
-					<select class="form-control">
+				<div id="identity_div" class="col-sm-10">
+					<select name="identity" class="form-control">
 					  	<option>請選擇帳號身分...</option>
 					  	<option>學士班學生</option>
 					  	<option>碩博班學生</option>
@@ -100,7 +226,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<input type="submit" name="submit" value="確認送出" class="btn btn-info" id="signup-submit"/>
+				<input type="submit" name="submit" value="確認送出" class="btn btn-info" id="signup-submit" disabled/>
 			</div>
 		</form>
 	</div>
