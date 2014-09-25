@@ -6,7 +6,8 @@
 	}
 </style>
 
-<div style="background-color:#2D3E50;margin-bottom:20px;margin-top:0px;">
+<!-- <div style="background-color:#2D3E50;margin-bottom:20px;margin-top:0px;"> -->
+<div style="background-color:#FCE06D;margin-bottom:20px;margin-top:0px;height:100%">
 <div class="container_12" style="background-color:#f9f9f9;height:100%;">
 <?php
 	$sql = "SELECT * FROM `discuz` WHERE `d_id` =".$_GET["d_id"];
@@ -14,7 +15,7 @@
 ?>
 	<div class="grid_12">
 		<div class=" panel-primary">
-			<div class="panel-heading">
+			<div class="panel-heading" style="background-color:#EA3A5A">
 				<h3 class="panel-title"><?php echo '['.$result["category"].']&nbsp&nbsp'.$result["d_title"]; ?></h3>
 		  	</div>
 		  	<div class="discuz-body">
@@ -38,7 +39,7 @@
 					$check_counts = $db_check->getOnly($sql_check);
 		  			?></span>
 		  		</div>
-		  		<a href="discuz.php" class="btn btn-default hyper-button button-back-list" style="width:100%;text-align:left;background-color:#f9f9f9;color:#428BCA;border-width:0px;padding-top:6px;padding-bottom:6px;"><i class="glyphicon glyphicon-arrow-left" style="margin-left:4px;margin-right:6px;"></i>返回</a>
+		  		<a href="discuz.php" class="btn btn-default hyper-button button-back-list" style="width:100%;text-align:left;background-color:#f9f9f9;color:#428BCA;border-width:0px;padding-top:6px;padding-bottom:6px;"><i class="glyphicon glyphicon-arrow-left" style="margin-left:4px;margin-right:6px;color:#EA3A5A"></i><font color="color:#EA3A5A">返回</font></a>
 		  		<br>
 				<div class="discuz-content" style="font-size:16px;">
 					<?php echo $result["content"];?>

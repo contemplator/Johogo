@@ -47,7 +47,7 @@
 									echo "<div class=\"panel-heading\">\r\n";
 								}
 
-					echo "<h3 class=\"panel-title\">".$result["p_name"]."</h3>".
+					echo "<h3 class=\"panel-title\">".mb_substr($result["p_name"], 0, 17, 'utf-8')."</h3>".
 								"</div>\r\n".
 								"<div class=\"panel-body product-body\" onClick='top.location.href=\"product_info.php?pid=".$result["p_id"]."\"'>".
 									"<img src=\"../johogo_backstage/".$resultimg["url"]."\"/>\n\r".
@@ -130,7 +130,7 @@
 									echo "<div class=\"panel-heading\">\r\n";
 								}
 
-					echo "<h3 class=\"panel-title\">".$result["p_name"]."</h3>".
+					echo "<h3 class=\"panel-title\">".mb_substr($result["p_name"], 0, 17, 'utf-8')."</h3>".
 								"</div>\r\n".
 								"<div class=\"panel-body product-body\" onClick='top.location.href=\"product_info.php?pid=".$result["p_id"]."\"'>".
 									"<img src=\"../johogo_backstage/".$resultimg["url"]."\"/>\n\r".

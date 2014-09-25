@@ -192,8 +192,10 @@ $(document).ready(function(){
 						$sql = "SELECT `student_id`,`datetime`,`content`,`isgood`,`response`,`r_datetime` FROM `comment` WHERE `p_id`= '".$prduct["p_id"]."'";
 						$db->query($sql);
 						if($db->get_num_rows()>0){
-							echo '<table class="grid_12">';
+							echo '<div class="grid_12">';
+							$count = 0;
 							while($resultcomt = $db->fetch_array($sql)){
+								$count++;
 								$imgsrc="img/good.png";
 								if($resultcomt["isgood"]==0){
 									$imgsrc="img/bad.png";
@@ -205,12 +207,20 @@ $(document).ready(function(){
 								if($member["nickname"]!=NULL){
 									$name = $member["nickname"];
 								}
-								echo '<tr><td class="grid_3">'.$name.'</td><td class="grid_5">'.$resultcomt["content"].'</td><td class="grid_1"><img style="height:50px;" src="'.$imgsrc.'"></td><td class="grid_3">'.$resultcomt["datetime"].'</td></tr>';
+								echo '<div class="grid_12" style="background-color:#f7f7f7">';
+								echo '<div class="grid_12"><div style="text-align:left;font-size:17px;color:#abaeb7;" class="grid_1 alpha">'.$name.'</div><div style="text-align:left;" class="grid_5"><img style="height:30px;" src="'.$imgsrc.'"/></div>'.'<div class="grid_5 alpha omega" style="font-size:16px;text-align:right;">'.$resultcomt["datetime"].'</div>'.'</div>';
+								echo '<div style="text-align:left;font-size:20px;" class="grid_12">'.$resultcomt["content"].'</div>';
+								echo '</div>';
 								if(isset($resultcomt["response"])){
-									echo '<tr><td class="grid_3" style="text-align:right">-></td><td class="grid_5">'.$resultcomt["response"].'</td><td class="grid_3">'.$resultcomt["r_datetime"].'</td></tr>';
+									echo '<div class="grid_12">';
+									echo '<div class="grid_12"><div style="text-align:left;font-size:17px;color:#abaeb7;" class="grid_6 omega">廠商回覆</div>'.'<div class="grid_5 omega alpha" style="font-size:16px;text-align:right;">'.$resultcomt["r_datetime"].'</div>'.'</div>';
+									echo '<div class="grid_12"><div class="grid_6" style="text-align:left;font-size:20px;">'.$resultcomt["response"].'</div></div>';
+									echo '</div>';
+								}else{
+									echo '<div class="grid_12" style="height:20px;">&nbsp;</div>';
 								}
 							}
-							echo '</table>';
+							echo '</div>';
 						}
 					?>
 				</div>

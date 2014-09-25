@@ -8,15 +8,16 @@ if(!isset($_SESSION["authen"])){
 			</SCRIPT>");
 }
 ?>
+
 <script type="text/javascript" src="js/jquery.textslider.min.js"></script>
 <link rel="stylesheet" type="text/css" media="all" href="css/memberQuery.css" />
 <div id="memberQuery_container" style="width:960px;text-align:center;margin:0 auto;">
 	<nav style="width:960px;">
 		<div class="form-inline" style="text-align:right;">
-			<a href="memberQuery.php" class="btn btn-large btn-primary">個人首頁</a>
-			<button id="follow" class="btn btn-large btn-success" type="button" value="followQuery.php">追蹤商品</button>
-			<button id="buy" class="btn btn-large btn-danger" type="button" value="buyQuery.php">購買商品</button>
-			<button id="discuss" class="btn btn-large btn-warning" type="button" value="discussQuery.php">發言紀錄追蹤</button>
+			<a id="self_index" href="memberQuery.php" style="background-color:#EA3A5A;" class="btn btn-large btn-primary">個人首頁</a>
+			<button id="follow" style="background-color:#6F6E78;" class="btn btn-large btn-success" type="button" value="followQuery.php">追蹤商品</button>
+			<button id="buy" style="background-color:#6F6E78;" class="btn btn-large btn-danger" type="button" value="buyQuery.php">購買商品</button>
+			<button id="discuss" style="background-color:#6F6E78;" class="btn btn-large btn-warning" type="button" value="discussQuery.php">發言紀錄追蹤</button>
 		</div>
 		<div style="text-align:left;">
 			<img style="width:100px;" src="img/user-bg.png">
@@ -180,7 +181,15 @@ if(!isset($_SESSION["authen"])){
 		
 	}
 	$(document).ready(function(){
-		$('#follow,#buy,#discuss').click(function(){Query_pages($(this).val());});
+		$('#self_index').click(function(){
+			$('#self_index,#follow,#buy,#discuss').css("background-color", "#6F6E78");
+			$(this).css("background-color", "#EA3A5A");
+		});
+		$('#follow,#buy,#discuss').click(function(){
+			$('#self_index,#follow,#buy,#discuss').css("background-color", "#6F6E78");
+			$(this).css("background-color", "#EA3A5A");
+			Query_pages($(this).val());
+		});
 		$('.slideText').textslider({
 			direction : 'scrollUp', // 捲動方向: scrollUp向上, scrollDown向下
 			scrollNum : 1, // 一次捲動幾個元素
